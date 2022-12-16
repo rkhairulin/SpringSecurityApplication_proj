@@ -30,7 +30,7 @@
   <fieldset>
     <legend>Выберите параметры для сортировки, поиска, фильтрации</legend>
     <br>
-    <label for="search">Поиск по ниаменованию</label>
+    <label class="lbl_search" for="search">Поиск по ниаменованию</label>
 
     <!--12.02  00:38:00  при перезагрузке поля сортировок не очищаются    -->
     <!--th:value="*{value_search}"  "*{value_price_ot}"  "*{value_price_do}"  - значения до перезагрузки страницы-->
@@ -39,7 +39,7 @@
     <p>Цена, ₽</p>
     <label for="ot">От</label>
     <input type="text" name="ot" th:value="*{value_price_ot}" id="ot">
-    <label for="do">до</label>
+    <label class="do" for="do">до</label>
     <input type="text" name="do" th:value="*{value_price_do}" id="do">
     <br>
 
@@ -67,31 +67,42 @@
 
 
 <!--12.02  00:40:00 результат сортировки-->
-<div style="background: aquamarine">
+<div class="result">
 <h3>Результат:</h3>
-<div  th:each="prdct : ${search_product}">
-  <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
-  <br>
+  <div class="goods__inner">
+
+<div  class="goods__item" th:each="prdct : ${search_product}">
+  <div class="goods__image">
+  <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}">
+  </div>
+  <div class="goods__text">
   <a th:href="@{/product/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}"></a>
   <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+  </div>
 </div>
-<hr>
 </div>
 
 
-<div style="background: aqua">
-<h3>Доступные товары:</h3>
-<div th:each="prdct : ${products}">
+<div class="goods">
+  <h3>Доступные товары:</h3>
 
+  <div class="goods__inner">
 
-  <!--    11.02   01:21:00 добавим фото к товарам зарегистрированному и незарегистрированному пользователю-->
-  <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
-  <br>
+    <div class="goods__item" th:each="prdct : ${products}">
 
+        <!--    11.02   01:21:00 добавим фото к товарам зарегистрированному и незарегистрированному пользователю-->
+      <div class="goods__image">
+        <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}">
+      </div>
 
-  <a th:href="@{/product/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}" id="title"></a>
-  <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
-</div>
+      <div class="goods__text">
+        <a th:href="@{/product/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}" id="title"></a>
+        <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+      </div>
+
+    </div>
+
+  </div>
 </div>
 
 

@@ -5,7 +5,7 @@ body{
 
 .cont1{
     max-width: 600px;
-    height: 600px;
+    /*height: 600px;*/
     margin: 100px auto;
     background-color: #ffc0cb;
     padding:5px;
@@ -59,3 +59,81 @@ nav{
 }
 
 
+
+
+
+
+
+
+
+
+
+.reg__inner{
+    margin: 5px;
+}
+
+.reg__inner h3{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.reg__form{
+    text-align: center;
+    margin: 20px;
+    padding:15px;
+    border:2px solid red;
+    box-shadow: 9px 9px;
+
+
+
+}
+
+
+label {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+input[type="text"],[type="password"]{
+    padding:10px;
+    border:none;
+    box-shadow: 5px 5px 15px 4px rgb(30 26 26);
+    border-radius: 20px;
+    margin: 5px;
+}
+
+input[type="text"],[type="password"]:focus-visible{
+    outline:none;
+}
+
+
+
+
+input[type="submit"]{
+    border: solid red;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 4px 4px black;
+    cursor: pointer;
+    font-size: 25px;
+    background-color: aqua;
+}
+
+input[type="submit"]:hover {
+    box-shadow: 4px 4px red;
+    border: solid;
+}
+
+
+
+.annotation{
+    text-align:justify;
+    margin: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: gray;
+}

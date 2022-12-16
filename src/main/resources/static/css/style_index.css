@@ -9,16 +9,13 @@ body{
     background-color: #ffc0cb;
     padding:5px;
     border:2px solid red;
+    border-top: none;
     box-shadow: 9px 9px;
 }
 
 
 a{
     text-decoration:none ;
-    color: black;
-}
-a:visited{
-    color: black;
 }
 
 
@@ -56,6 +53,165 @@ nav{
 
 
 .menu input[type=submit]:hover{
+    background-color: #eca0ad;
+    box-shadow: 4px 4px red;
+    border: solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+h2{
+    font-size: 40px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+
+legend{
+    font-size: 30px;
+    font-weight: 700;
+}
+
+fieldset p{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.lbl_search{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+input[type="text"],[type="search"]{
+    padding:10px;
+    border:none;
+    box-shadow: 5px 5px 15px 4px rgb(30 26 26);
+    border-radius: 20px;
+    margin: 5px;
+}
+
+input[type="text"],[type="search"]:focus-visible{
+    outline:none;
+}
+
+
+.do{
+    margin-left: 10px;
+}
+
+
+
+
+input[type="submit"]{
+    border: solid red;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 4px 4px black;
+    cursor: pointer;
+    font-size: 25px;
+    background-color: aqua;
+}
+
+input[type="submit"]:hover {
+    /*background-color: #eca0ad;*/
+    box-shadow: 4px 4px red;
+    border: solid;
+}
+
+
+
+
+
+
+
+
+.result{
+    background: aqua;
+}
+
+
+.result h3{
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.goods{
+    background: aquamarine;
+}
+
+.goods h3{
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+
+
+.goods__inner{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+.goods__item{
+
+    max-width: 360px;
+    margin: 18px;
+    background-color: #ffc0cb;
+    border:2px solid red;
+    box-shadow: 9px 9px;
+    display: flex;
+    flex-direction: column;
+    height:665px;
+}
+
+.goods__image{
+    width: 100%;
+    height: 500px;
+}
+
+
+.goods__item img{
+    width: 100%;
+}
+
+
+.goods__text{
+    margin: 5px;
+}
+
+.goods__text p{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.item__btn a{
+    border: solid red;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 4px 4px black;
+    cursor: pointer;
+    background-color: #ffc0cb;
+}
+
+
+.item__btn a:hover{
     background-color: #eca0ad;
     box-shadow: 4px 4px red;
     border: solid;

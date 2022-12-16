@@ -17,30 +17,33 @@
 </header>
 
 <div class="cont1">
+    <div class="reg__inner">
 
 <h3>Авторизация:</h3>
 <!--непонятно почему метод и действие без th: ....-->
-<form method="post" action="/process_login">
-<!--9.2 01:27:00 добавим csrf token в форму аутентификации, в остальные формы Spring внедрит автоматически-->
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <div class="reg__form">
+        <form method="post" action="/process_login">
+        <!--9.2 01:27:00 добавим csrf token в форму аутентификации, в остальные формы Spring внедрит автоматически-->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-<!--название полей  username и password обязательно, или spring Secutity их не сможет сравнить с данными из бд -->
-    <label for="username">Введите логин</label>
-    <input type="text" placeholder="логин..." name="username" id="username">
-    <br>
-    <label for="password">Введите пароль</label>
-    <input type="password" placeholder="пароль..." name="password" id="password">
-    <br>
-    <input type="submit" value="Войти">
-<!-- Если  к нам приходит объект ошибки в параметрах get-запроса (?error), то мы выводим этот блок красным цветом -->
-    <div th:if="${param.error}" style="color:red">
-        Неверный логин или пароль
+        <!--название полей  username и password обязательно, или spring Secutity их не сможет сравнить с данными из бд -->
+            <label for="username">Введите логин</label>
+            <input type="text" placeholder="логин..." name="username" id="username">
+            <br><br>
+            <label for="password">Введите пароль</label>
+            <input type="password" placeholder="пароль..." name="password" id="password">
+            <br><br>
+            <input type="submit" value="Войти">
+        <!-- Если  к нам приходит объект ошибки в параметрах get-запроса (?error), то мы выводим этот блок красным цветом -->
+            <div th:if="${param.error}" style="color:red">
+                Неверный логин или пароль
+            </div>
+        </form>
     </div>
-</form>
+        <p class="annotation">*Вы можете зайти на сайт и без регистрации/авторизации, но при этом доступный Вам функционал будет ограничен</p>
 
 
-
-
+    </div>
 </div>
 </body>
 </html>

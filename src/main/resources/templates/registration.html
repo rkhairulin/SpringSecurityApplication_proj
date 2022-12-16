@@ -22,26 +22,32 @@
 
 <div class="cont1">
 
-<h3>Регистрация</h3>
-<!--если th подчеркивается красным значит в контролере не прикрепился нужный объект-->
-<!--пост запрос отправляется на url th:action="@{/authentication/registration}" -->
-<!--th:object="${person} из AuthenticationController -->
-<form method="post" th:action="@{/authentication/registration}" th:object="${person}">
-  <!--название полей  в этой форме произвольно  -->
-  <label for="login">Введите логин</label>
-  <input type="text" th:field="*{login}" placeholder="логин..." name="login" id="login">
-<!--внедрим написанную ранее валидатцию -->
-  <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">
+  <div class="reg__inner">
+    <h3>Регистрация</h3>
+    <!--если th подчеркивается красным значит в контролере не прикрепился нужный объект-->
+    <!--пост запрос отправляется на url th:action="@{/authentication/registration}" -->
+    <!--th:object="${person} из AuthenticationController -->
+    <div class="reg__form">
+      <form method="post" th:action="@{/authentication/registration}" th:object="${person}">
+        <!--название полей  в этой форме произвольно  -->
+        <label for="login">Введите логин</label>
+        <input type="text" th:field="*{login}" placeholder="логин..." name="login" id="login">
+      <!--внедрим написанную ранее валидатцию -->
+        <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">
+        </div>
+        <br><br>
+        <label for="password">Введите пароль</label>
+        <input type="password" th:field="*{password}" placeholder="пароль..." name="password" id="password">
+        <!--внедрим написанную ранее валидатцию -->
+        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+        </div>
+        <br> <br>
+        <input type="submit" value="Зарегистрироваться">
+      </form>
+    </div>
+    <p class="annotation">*Вы можете зайти на сайт и без регистрации/авторизации, но при этом доступный Вам функционал будет ограничен</p>
+
   </div>
-  <br><br>
-  <label for="password">Введите пароль</label>
-  <input type="password" th:field="*{password}" placeholder="пароль..." name="password" id="password">
-  <!--внедрим написанную ранее валидатцию -->
-  <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-  </div>
-  <br> <br>
-  <input type="submit" value="Зарегистрироваться">
-</form>
 
 </div>
 

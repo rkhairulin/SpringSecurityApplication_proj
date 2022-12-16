@@ -37,7 +37,7 @@
 <div class="cont1">
 
 
-<h3>Личный кабинет пользователя</h3>
+<h2>Личный кабинет пользователя</h2>
 
 
 
@@ -46,7 +46,7 @@
     <fieldset>
         <legend>Выберите параметры для сортировки, поиска, фильтрации</legend>
         <br>
-        <label for="search">Поиск по ниаменованию</label>
+        <label class="lbl_search" for="search">Поиск по ниаменованию</label>
 
         <!--12.02  00:38:00  при перезагрузке поля сортировок не очищаются    -->
         <!--th:value="*{value_search}"  "*{value_price_ot}"  "*{value_price_do}"  - значения до перезагрузки страницы-->
@@ -82,38 +82,43 @@
 
 
 <!--12.02  00:40:00 результат сортировки-->
-<div style="background: aquamarine">
+<div class="result">
     <h3>Результат:</h3>
-    <div  th:each="prdct : ${search_product}">
-        <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
-        <br>
-        <a th:href="@{/product/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}"></a>
-        <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
-        <a th:href="@{/cart/add/{id}(id=${prdct.getId()})}">Добавить в корзину</a>
+    <div class="goods__inner">
+        <div  class="goods__item" th:each="prdct : ${search_product}">
+            <div class="goods__image">
+             <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
+            </div>
+            <div class="goods__text">
+            <a th:href="@{/user/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}"></a>
+            <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+            <a th:href="@{/cart/add/{id}(id=${prdct.getId()})}">Добавить в корзину</a>
+            </div>
+        </div>
     </div>
-    <hr>
 </div>
 
 
 
-<div style="background: aqua">
-<!--11.02  00:23:00 товары в  ЛК пользователя-->
-<h3>Доступные товары:</h3>
-<div th:each="prdct : ${products}">
-
-<!--    11.02   01:21:00 добавим фото к товарам зарегистрированному и незарегистрированному пользователю-->
-    <br>
-    <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/user/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}" id="title"></a>
-    <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
-
-
-
-<!--    12.03  00:10:30 ссылка на добавление в корзину под товаром-->
-    <a th:href="@{/cart/add/{id}(id=${prdct.getId()})}">Добавить в корзину</a>
-    <hr>
-</div>
+<div class="goods">
+    <!--11.02  00:23:00 товары в  ЛК пользователя-->
+    <h3>Доступные товары:</h3>
+    <div class="goods__inner">
+        <div class="goods__item" th:each="prdct : ${products}">
+            <!--    11.02   01:21:00 добавим фото к товарам зарегистрированному и незарегистрированному пользователю-->
+            <div class="goods__image">
+                <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
+            </div>
+            <div class="goods__text">
+                <a th:href="@{/user/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}" id="title"></a>
+                <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+                <!--    12.03  00:10:30 ссылка на добавление в корзину под товаром-->
+                <div class="item__btn">
+                    <a th:href="@{/cart/add/{id}(id=${prdct.getId()})}">Добавить в корзину</a>
+                <div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </div>
