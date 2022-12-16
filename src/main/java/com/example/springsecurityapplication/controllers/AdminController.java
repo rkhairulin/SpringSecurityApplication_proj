@@ -30,6 +30,10 @@ import java.util.List;
 import java.util.UUID;
 
 
+//git test1
+
+
+
 //    10.1  00:59:50    данную аннотацию можно навесьть на весь контроллер сразу при необходимости но метод внутри моменяется на hasAnyAuthority
 //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 
