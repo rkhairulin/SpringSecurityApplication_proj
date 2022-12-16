@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link th:href="@{/css/style_user_cart.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <nav class="menu">
+    <div class="menu__list">
+      <form method="get" th:action="@{/index}">
+        <input type="submit" value="Личный кабинет">
+      </form>
+
+      <!--12.03  00:49:30 добавим кнопку Заказы-->
+      <form method="get" th:action="@{/orders}">
+        <input type="submit" value="Заказы">
+      </form>
+
+      <form method="post" th:action="@{/logout}">
+        <input class="logout" type="submit" value="Выйти из Личного кабинета">
+      </form>
+    </div>
+  </nav>
+</header>
+
+
+
+
+<div class="cont1">
+<!--12.03  00:28:50  вывод корзины на экран ЛК пользователя-->
+  <h3>Ваша корзина товаров</h3>
+
+  <div class="products">
+
+    <div class=products__item   th:each="prdct : ${cart_product}">
+
+      <div class="image">
+        <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
+      </div>
+
+      <div class="products__info">
+        <div class="products__info__conteiner">
+          <a th:href="@{/product/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}"></a>
+          <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+
+          <!--  12.03  00:31:30 Удаление из корзины-->
+          <div class="btn">
+            <a th:href="@{/cart/delete/{id}(id=${prdct.getId()})}">Удалить товар из корзины</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="confirm">
+    <p class="sum" th:text="'Итоговая цена: ' + ${price} + ' ₽'"></p>
+    <a class="confirm__btn" href="/order/create">Оформить заказ</a>
+  </div>
+
+</div>
+
+</body>
+</html>

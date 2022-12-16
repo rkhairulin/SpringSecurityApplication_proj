@@ -1,0 +1,174 @@
+body{
+    background-image: url('../imges/back.png');
+    background-repeat: repeat;
+    margin:8px;
+}
+
+.cont1{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffc0cb;
+    padding:5px;
+    border:2px solid red;
+    border-top:none;
+    box-shadow: 9px 9px;
+}
+
+a{
+    text-decoration:none ;
+    color: black;
+}
+a:visited{
+    color: black;
+}
+
+
+
+nav{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffc0cb;
+    padding:5px;
+    border:2px solid red;
+    border-bottom:1px solid black;
+    box-shadow: 9px 9px;
+}
+
+.menu__list{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    list-style: none;
+    margin: 16px 0;
+}
+
+input[type=submit]{
+    border: solid red;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 4px 4px black;
+    cursor: pointer;
+    font-size: 29px;
+    font-family: 'Yeseva One', cursive;
+    background-color: #ffc0cb;
+}
+
+
+input[type=submit]:hover{
+    background-color: #eca0ad;
+    box-shadow: 4px 4px red;
+    border: solid;
+}
+
+h3{
+    font-size: 25px;
+    margin-left:20px;
+}
+
+
+
+
+
+
+.products{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+
+.products__item{
+    width: 560px;
+    border:2px solid red;
+    box-shadow: 9px 9px;
+    margin: 18px;
+
+    align-content: end;
+    flex-wrap: nowrap;
+    display: flex;
+
+
+}
+
+.image{
+    width: 30%;
+}
+
+.image img{
+    width: 100%;
+}
+
+.products__info{
+    width: 70%;
+}
+
+.products__info__conteiner{
+    margin: 8px;
+}
+
+.sum{
+    font-size: 25px;
+    margin-left:5px;
+    font-weight: bold;
+}
+
+
+.btn {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: end;
+}
+
+.btn a{
+    border: solid red;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 4px 4px black;
+    cursor: pointer;
+    background-color: #ffc0cb;
+}
+
+.btn a:hover {
+    background-color: #eca0ad;
+    box-shadow: 4px 4px red;
+    border: solid;
+}
+
+
+
+
+.confirm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm p{
+    margin: 0;
+}
+
+
+.confirm__btn{
+    border: solid red;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 4px 4px black;
+    cursor: pointer;
+    font-size: 25px;
+    font-family: 'Yeseva One', cursive;
+    background-color: aqua;
+}
+
+
+
+.confirm__btn:hover {
+    /*background-color: #eca0ad;*/
+    box-shadow: 4px 4px red;
+    border: solid;
+}

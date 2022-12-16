@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ панель</title>
+    <link th:href="@{/css/style_admin.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+
+<header>
+    <nav class="menu">
+        <div class="menu__list">
+
+            <form method="get" th:action="@{/admin/users}">
+                <input type="submit" value="Пользователи">
+            </form>
+
+            <!--12.03  00:49:30 добавим кнопку Заказы-->
+            <form method="get" th:action="@{/admin/orders}">
+                <input type="submit" value="Заказы">
+            </form>
+
+            <form method="get" th:action="@{/admin/product/add}">
+                <input type="submit" value="Добавить товар">
+            </form>
+
+            <form method="post" th:action="@{/logout}">
+                <input class="logout" type="submit" value="Выйти из Личного кабинета">
+            </form>
+
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+
+<div class="cont1">
+
+<h3>Личный кабинет администратора</h3>
+
+<h3>Каталог товаров:</h3>
+<div th:each="product : ${products}">
+<!-- 11.02 01:14:30 вывод картинки   -->
+<!--обращаемся по текущему продукту, берем из него 1й элемент листа картинок и указываем поле отвецающее за название картинки -->
+    <img th:src="'/img/'+ ${product.imageList[0].getFileName()}" width="300px">
+
+    <p th:text="'ID товара: ' + ${product.getId()}"></p>
+    <p th:text="'Наимменование товара: ' + ${product.getTitle()}"></p>
+    <p th:text="'Цена товара: ' + ${product.getPrice()}"></p>
+    <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+    <p th:text="'Склад товара: ' + ${product.getStorage()}"></p>
+
+<!--12.01   00:35:00 добавим вывод категории на главной странице лк Админа-->
+<!--в нашец логике категория - объект с именем и листом продуктов, поэтому дополнительно вызываем метод .getName() чтобы ролучить ее наименование-->
+    <p th:text="'Категория товара: ' + ${product.getCategory().getName()}"></p>
+
+    <p th:text="'Описание товара: ' + ${product.getDescription()}"></p>
+    <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактировать Товар</a>
+    <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удалить Товар</a>
+</div>
+
+
+</div>
+</body>
+</html>
+

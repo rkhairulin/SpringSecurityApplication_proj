@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование товара</title>
+    <link th:href="@{/css/style_edit_product.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <nav class="menu">
+        <div class="menu__list">
+
+            <form method="get" th:action="@{/admin}">
+                <input type="submit" value="Личный кабинет">
+            </form>
+
+            <form method="get" th:action="@{/admin/users}">
+                <input type="submit" value="Пользователи">
+            </form>
+
+            <!--12.03  00:49:30 добавим кнопку Заказы-->
+            <form method="get" th:action="@{/admin/orders}">
+                <input type="submit" value="Заказы">
+            </form>
+
+            <form method="get" th:action="@{/admin/product/add}">
+                <input type="submit" value="Добавить товар">
+            </form>
+
+            <form method="post" th:action="@{/logout}">
+                <input class="logout" type="submit" value="Выйти из аккаунта">
+            </form>
+
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="cont1">
+
+<h3>Редактирование товара</h3>
+
+<form method="POST" th:action="@{/admin/product/edit/{id}(id=${editedProduct.getId()})}" th:object="${editedProduct}">
+    <label for="title">Введите наименование товара:</label>
+    <input type="text" th:field="*{title}" placeholder="Наименование" name="title" id="title">
+    <br>
+    <label for="price">Введите цену товара:</label>
+    <input type="number" th:field="*{price}" min="100" step="0.01" name="price" id="price">
+    <br>
+    <label for="seller">Введите продавца товара:</label>
+    <input type="text" th:field="*{seller}" placeholder="Продавец" name="seller" id="seller">
+    <br>
+    <label for="storage">Введите склад товара:</label>
+    <input type="text" th:field="*{storage}" placeholder="Склад" name="storage" id="storage">
+    <br>
+
+
+<!--    12.01   00:21:40 добавим поле под категории-->
+    <lable for="category">Выберите категорию товара</lable>
+    <select name="category" th:field="*{category}" id="category">
+        <div th:each="element : ${category}">
+            <option th:text="${element.getName()}" th:value="${element.getId()}"> </option>
+        </div>
+    </select>
+
+
+
+    <br>
+    <label for="description">Введите описание товара:</label>
+    <textarea th:field="*{description}" placeholder="Описание товара" name="description" id="description"></textarea>
+    <br>
+    <input type="submit" value="Редактировать">
+</form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+    <link th:href="@{/css/style_admin_orders.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <nav class="menu">
+        <div class="menu__list">
+
+            <form method="get" th:action="@{/admin}">
+                <input type="submit" value="Личный кабинет">
+            </form>
+
+            <form method="get" th:action="@{/admin/users}">
+                <input type="submit" value="Пользователи">
+            </form>
+
+            <form method="get" th:action="@{/admin/product/add}">
+                <input type="submit" value="Добавить товар">
+            </form>
+
+            <form method="post" th:action="@{/logout}">
+                <input class="logout" type="submit" value="Выйти из Личного кабинета">
+            </form>
+
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+<div class="cont1">
+
+    <!--   X_004-->
+<br><br>
+<form th:method="post" th:action="@{/admin/orders/search}" th:object="${searchingOrders}">
+<!--    th:object="searchingOrders">-->
+    <label for="search">4 последние символа номера заказа</label>
+    <input type="search" name="searchPhrase" th:value="${value_search}" id="search">
+    <input type="submit" value="Искать">
+</form>
+<br><br>
+
+
+<div>
+    <table style="border:1px solid black">
+        <thead>
+        <tr>
+            <th style="border:1px solid black">Id</th>
+            <th style="border:1px solid black">Номер заказа</th>
+            <th style="border:1px solid black">id товара </th>
+            <th style="border:1px solid black">Наименование товара</th>
+            <th style="border:1px solid black">Количество</th>
+            <th style="border:1px solid black">Цена</th>
+            <th style="border:1px solid black">Пользователь</th>
+            <th style="border:1px solid black">Дата изменений</th>
+            <th style="border:1px solid black">Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div th:each="order: ${searchingOrders}">
+            <tr>
+                <td style="border:1px solid black" th:text="${order.getId()}"></td>
+                <td style="border:1px solid black" th:text="${order.getNumber()}"></td>
+                <td style="border:1px solid black"th:text="${order.getProduct().getId()}"></td>
+                <td style="border:1px solid black"th:text="${order.getProduct().getTitle()}"></td>
+                <td style="border:1px solid black"th:text="${order.getCount()}"></td>
+                <td style="border:1px solid black"th:text="${order.getPrice()}"></td>
+                <td style="border:1px solid black"th:text="${order.getPerson().getLogin()}"></td>
+                <td style="border:1px solid black"th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></td>
+                <td style="border:1px solid black"th:text="${order.getStatus()}"></td>
+            </tr>
+        </div>
+        </tbody>
+        </tr>
+    </table>
+</div>
+<br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+    <form th:method="post" th:action="@{/admin/orders/status_change}" th:object="${orders}">
+    <table style="border:1px solid black">
+        <thead>
+            <tr>
+                <th style="border:1px solid black">Id</th>
+                <th style="border:1px solid black">Номер заказа</th>
+                <th style="border:1px solid black">id товара </th>
+                <th style="border:1px solid black">Наименование товара</th>
+                <th style="border:1px solid black">Количество</th>
+                <th style="border:1px solid black">Цена</th>
+                <th style="border:1px solid black">Пользователь</th>
+                <th style="border:1px solid black">Дата изменений</th>
+                <th style="border:1px solid black">Статус</th>
+                <th style="border:1px solid black">Новый Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            <div th:each="order: ${orders}">
+                <tr>
+                    <td style="border:1px solid black" th:text="${order.getId()}"></td>
+                    <td style="border:1px solid black" th:text="${order.getNumber()}"></td>
+                    <td style="border:1px solid black"th:text="${order.getProduct().getId()}"></td>
+                    <td style="border:1px solid black"th:text="${order.getProduct().getTitle()}"></td>
+                    <td style="border:1px solid black"th:text="${order.getCount()}"></td>
+                    <td style="border:1px solid black"th:text="${order.getPrice()}"></td>
+                    <td style="border:1px solid black"th:text="${order.getPerson().getLogin()}"></td>
+                    <td style="border:1px solid black"th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></td>
+                    <td style="border:1px solid black"th:text="${order.getStatus()}"></td>
+                    <td style="border:1px solid black">
+                        <select name="status" th:id="${order.getId()}">
+                            <div th:each="element: ${status}">
+                                <option th:if="${order.getStatus()} !=${element}" th:value="${element}" th:text="${element}"></option>
+                            </div>
+                            <option selected th:value="${order.getStatus()}" th:text="${order.getStatus()}"></option>
+                        </select>
+                    </td>
+                 </tr>
+            </div>
+        </tbody>
+        </tr>
+
+    </table>
+    <br>
+    <input type="submit" value="Принять изменения">
+    </form>
+</div>
+
+
+</div>
+</body>
+</html>

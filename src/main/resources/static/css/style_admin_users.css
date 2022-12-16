@@ -1,0 +1,63 @@
+body{
+    background-image: url('../imges/back.png');
+    background-repeat: repeat;
+}
+
+.cont1{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffc0cb;
+    padding:5px;
+    border:2px solid red;
+    box-shadow: 9px 9px;
+    border-top:none;
+}
+
+
+a{
+    text-decoration:none ;
+    color: black;
+}
+a:visited{
+    color: black;
+}
+
+
+
+nav{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffc0cb;
+    padding:5px;
+    border:2px solid red;
+    border-bottom:1px solid black;
+    box-shadow: 9px 9px;
+}
+
+.menu__list{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    list-style: none;
+    margin: 16px 0;
+}
+
+.menu input[type=submit]{
+    border: solid red;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 4px 4px black;
+    cursor: pointer;
+    font-size: 29px;
+    font-family: 'Yeseva One', cursive;
+    background-color: #ffc0cb;
+}
+
+
+.menu input[type=submit]:hover{
+    background-color: #eca0ad;
+    box-shadow: 4px 4px red;
+    border: solid;
+}

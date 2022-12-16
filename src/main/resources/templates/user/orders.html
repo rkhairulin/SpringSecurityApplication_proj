@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <title>Заказы</title>
+    <link th:href="@{/css/style_user_orders.css}" type="text/css" rel="stylesheet">
+<body>
+
+<header>
+  <nav class="menu">
+    <div class="menu__list">
+      <form method="get" th:action="@{/index}">
+        <input type="submit" value="Личный кабинет">
+      </form>
+
+      <!--12.03  00:09:50 организуем визуал корзины-->
+      <form method="get" th:action="@{/cart}">
+        <input type="submit" value="Корзина">
+      </form>
+
+      <form method="post" th:action="@{/logout}">
+        <input class="logout" type="submit" value="Выйти из Личного кабинета">
+      </form>
+    </div>
+  </nav>
+</header>
+
+
+
+
+<div class="cont1">
+<!--12.03  00:59:20 шаблон orders-->
+<h3>История Заказов</h3>
+
+  <div class="orders">
+    <div class="orders__item"  th:each="order: ${orders}">
+      <div class="image">
+        <img th:src="'/img/'+ ${order.getProduct().imageList[0].getFileName()}">
+      </div>
+      <div class="orders__info">
+        <div class="orders__info__conteiner">
+          <h3 th:text="'Заказ № ' + ${order.getNumber}"></h3>
+          <p>Наименование: <span th:text="${order.getProduct().getTitle()}"></span></p>
+          <p>Количество: <span th:text="${order.getCount()}"></span></p>
+          <p>Цена: <span th:text="${order.getPrice()}"></span></p>
+          <!-- приводим дату к виду: dd-MMM-yyyy -->
+          <p>Дата заказа: <span th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></span></p>
+          <p>IСтатус: <span th:text="${order.getStatus()}"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>

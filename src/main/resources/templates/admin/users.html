@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <link th:href="@{/css/style_admin_users.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <nav class="menu">
+        <div class="menu__list">
+
+            <form method="get" th:action="@{/admin}">
+                <input type="submit" value="Личный кабинет">
+            </form>
+
+            <!--12.03  00:49:30 добавим кнопку Заказы-->
+            <form method="get" th:action="@{/admin/orders}">
+                <input type="submit" value="Заказы">
+            </form>
+
+            <form method="get" th:action="@{/admin/product/add}">
+                <input type="submit" value="Добавить товар">
+            </form>
+
+            <form method="post" th:action="@{/logout}">
+                <input class="logout" type="submit" value="Выйти из Личного кабинета">
+            </form>
+
+        </div>
+    </nav>
+</header>
+
+<div class="cont1">
+
+<h3>Список пользователей</h3>
+
+<div>
+  <form th:method="post" th:action="@{/admin/users/change_role}" th:object="${users}">
+    <table style="border:1px solid black">
+      <thead>
+      <tr>
+        <th style="border:1px solid black">Id</th>
+        <th style="border:1px solid black">Логин</th>
+        <th style="border:1px solid black">ХэшПароля</th>
+        <th style="border:1px solid black">Текущая Роль</th>
+        <th style="border:1px solid black">Новая Роль</th>
+      </tr>
+      </thead>
+      <tbody>
+      <div th:each="user: ${users}">
+       <tr>
+          <td style="border:1px solid black" th:text="${user.getId()}"></td>
+          <td style="border:1px solid black" th:text="${user.getLogin()}"></td>
+          <td style="border:1px solid black"th:text="${user.getPassword()}"></td>
+          <td style="border:1px solid black"th:text="${user.getRole()}"></td>
+          <td style="border:1px solid black">
+            <select name="role" th:id="${user.getId()}">
+                <option th:if="${user.getRole()} !='ROLE_ADMIN'" th:value='ROLE_ADMIN' th:text='ROLE_ADMIN'></option>
+                <option th:if="${user.getRole()} !='ROLE_USER'" th:value='ROLE_USER' th:text='ROLE_USER'></option>
+                <option selected th:value="${user.getRole()}" th:text="${user.getRole()}"></option>
+            </select>
+          </td>
+        </tr>
+      </div>
+      </tbody>
+      </tr>
+    </table>
+    <br>
+    <input type="submit" value="Принять изменения">
+  </form>
+</div>
+
+
+</div>
+</body>
+</html>

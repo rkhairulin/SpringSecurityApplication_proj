@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <title>Информация о товаре</title>
+    <link th:href="@{/css/style_guest_product_info.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <nav class="menu">
+    <ul class="menu__list">
+      <li><a href="/product">Главная страница</a></li>
+      <li><a href="/authentication/login">Войти в личный аккаунт</a></li>
+      <li><a href="authentication/registration">Зарегистрироваться</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+
+
+
+
+<div class="cont1">
+
+  <div class="prod_info">
+  <h3>Карточка товара</h3>
+
+    <p>ID товара: <span th:text="${productInfo.getId()}"></span></p>
+    <p>Наимменование товара: <span th:text="${productInfo.getTitle()}"></span></p>
+    <p>Цена товара: <span th:text="${productInfo.getPrice()}"></span></p>
+    <p>Продавец: <span th:text="${productInfo.getSeller()}"></span></p>
+    <p>Склад товара: <span th:text="${productInfo.getStorage()}"></span></p>
+    <!--12.01   00:46:30 добавим поле категории-->
+    <p>Категория товара: <span th:text="${productInfo.getCategory().getName()}"></span></p>
+    <p>Описание товара: <span th:text="${productInfo.getDescription()}"></span></p>
+  </div>
+
+
+  <div class="images">
+    <div class="images__image" th:each="img : ${productInfo.getImageList()}">
+      <img th:src="'/img/'+ ${img.getFileName()}" alt="Изображение товара">
+    </div>
+  </div>
+
+
+<!--   width="300px"-->
+
+</div>>
+</body>
+</html>

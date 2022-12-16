@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <title>Список товаров</title>
+     <link th:href="@{/css/style_main_page.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <nav class="menu">
+    <ul class="menu__list">
+      <li><a href="authentication/registration">Зарегистрироваться</a></li>
+      <li><a href="/authentication/login">Личный кабинет</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+
+
+
+
+<div class="cont1">
+
+
+
+<!--12.01   00:49:10 Кнопки сортировки-->
+<form th:method="post" th:action="@{/product/search}">
+  <fieldset>
+    <legend>Выберите параметры для сортировки, поиска, фильтрации</legend>
+    <br>
+    <label for="search">Поиск по ниаменованию</label>
+
+    <!--12.02  00:38:00  при перезагрузке поля сортировок не очищаются    -->
+    <!--th:value="*{value_search}"  "*{value_price_ot}"  "*{value_price_do}"  - значения до перезагрузки страницы-->
+    <input type="search" name="search"  th:value="*{value_search}"  id="search">
+    <br>
+    <p>Цена, ₽</p>
+    <label for="ot">От</label>
+    <input type="text" name="ot" th:value="*{value_price_ot}" id="ot">
+    <label for="do">до</label>
+    <input type="text" name="do" th:value="*{value_price_do}" id="do">
+    <br>
+
+    <p>Сортировка по цене:</p>
+  <!--name="price" - одинаковое чтобы выбрать можно было только 1н элемент из 2х-->
+    <input type="radio" name="price" id="ascending_price" value="sort_by_asc">
+    <label for="ascending_price">по возрастанию</label>
+    <input type="radio" name="price" id="descending_price" value="sort_by_desc">
+    <label for="descending_price">по убыванию</label>
+
+    <p>Выбор категории товаров</p>
+    <input type="radio" name="category" id="sofa" value="sofa">
+    <label for="sofa">Диваны</label>
+    <input type="radio" name="category" id="bed" value="bed">
+    <label for="bed">Кровати</label>
+    <input type="radio" name="category" id="table" value="table">
+    <label for="table">Столы</label>
+    <input type="radio" name="category" id="chair" value="chair">
+    <label for="chair">Стулья</label>
+    <br>
+    <br>
+    <input type="submit" value="Применить и найти">
+  </fieldset>
+</form>
+
+
+<!--12.02  00:40:00 результат сортировки-->
+<div style="background: aquamarine">
+<h3>Результат:</h3>
+<div  th:each="prdct : ${search_product}">
+  <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
+  <br>
+  <a th:href="@{/product/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}"></a>
+  <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+</div>
+<hr>
+</div>
+
+
+<div style="background: aqua">
+<h3>Доступные товары:</h3>
+<div th:each="prdct : ${products}">
+
+
+  <!--    11.02   01:21:00 добавим фото к товарам зарегистрированному и незарегистрированному пользователю-->
+  <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
+  <br>
+
+
+  <a th:href="@{/product/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}" id="title"></a>
+  <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+</div>
+</div>
+
+
+
+</div>
+</body>
+</html>

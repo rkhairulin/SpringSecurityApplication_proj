@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет пользователя</title>
+    <link th:href="@{/css/style_index.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+
+<header>
+    <nav class="menu">
+        <div class="menu__list">
+
+            <form method="get" th:action="@{/cart}">
+                <input type="submit" value="Корзина">
+            </form>
+
+            <!--12.03  00:49:30 добавим кнопку Заказы-->
+            <form method="get" th:action="@{/orders}">
+                <input type="submit" value="Заказы">
+            </form>
+
+            <form method="post" th:action="@{/logout}">
+                <input class="logout" type="submit" value="Выйти из Личного кабинета">
+            </form>
+
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+<div class="cont1">
+
+
+<h3>Личный кабинет пользователя</h3>
+
+
+
+<!---X_002-->
+<form th:method="post" th:action="@{/index/search}">
+    <fieldset>
+        <legend>Выберите параметры для сортировки, поиска, фильтрации</legend>
+        <br>
+        <label for="search">Поиск по ниаменованию</label>
+
+        <!--12.02  00:38:00  при перезагрузке поля сортировок не очищаются    -->
+        <!--th:value="*{value_search}"  "*{value_price_ot}"  "*{value_price_do}"  - значения до перезагрузки страницы-->
+        <input type="search" name="search"  th:value="*{value_search}"  id="search">
+        <br>
+        <p>Цена, ₽</p>
+        <label for="ot">От</label>
+        <input type="text" name="ot" th:value="*{value_price_ot}" id="ot">
+        <label for="do">до</label>
+        <input type="text" name="do" th:value="*{value_price_do}" id="do">
+        <br>
+        <p>Сортировка по цене:</p>
+        <!--name="price" - одинаковое чтобы выбрать можно было только 1н элемент из 2х-->
+        <input type="radio" name="price" id="ascending_price" value="sort_by_asc">
+        <label for="ascending_price">по возрастанию</label>
+        <input type="radio" name="price" id="descending_price" value="sort_by_desc">
+        <label for="descending_price">по убыванию</label>
+        <p>Выбор категории товаров</p>
+        <input type="radio" name="category" id="sofa" value="sofa">
+        <label for="sofa">Диваны</label>
+        <input type="radio" name="category" id="bed" value="bed">
+        <label for="bed">Кровати</label>
+        <input type="radio" name="category" id="table" value="table">
+        <label for="table">Столы</label>
+        <input type="radio" name="category" id="chair" value="chair">
+        <label for="chair">Стулья</label>
+        <br>
+        <br>
+        <input class="search__btn" type="submit" value="Применить и найти">
+    </fieldset>
+</form>
+
+
+
+<!--12.02  00:40:00 результат сортировки-->
+<div style="background: aquamarine">
+    <h3>Результат:</h3>
+    <div  th:each="prdct : ${search_product}">
+        <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
+        <br>
+        <a th:href="@{/product/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}"></a>
+        <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+        <a th:href="@{/cart/add/{id}(id=${prdct.getId()})}">Добавить в корзину</a>
+    </div>
+    <hr>
+</div>
+
+
+
+<div style="background: aqua">
+<!--11.02  00:23:00 товары в  ЛК пользователя-->
+<h3>Доступные товары:</h3>
+<div th:each="prdct : ${products}">
+
+<!--    11.02   01:21:00 добавим фото к товарам зарегистрированному и незарегистрированному пользователю-->
+    <br>
+    <img th:src="'/img/'+ ${prdct.imageList[0].getFileName()}" width="300px">
+    <br>
+    <a th:href="@{/user/info/{id}(id=${prdct.getId()})}" th:text="${prdct.getTitle()}" id="title"></a>
+    <p th:text="'Цена: ' + ${prdct.getPrice()}"></p>
+
+
+
+<!--    12.03  00:10:30 ссылка на добавление в корзину под товаром-->
+    <a th:href="@{/cart/add/{id}(id=${prdct.getId()})}">Добавить в корзину</a>
+    <hr>
+</div>
+</div>
+
+</div>
+</body>
+</html>
